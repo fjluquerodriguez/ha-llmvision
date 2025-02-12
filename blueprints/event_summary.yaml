@@ -1,6 +1,6 @@
 blueprint:
-  name: AI Event Summary (LLM Vision v1.3.8)
-  author: valentinfrlch
+  name: AI Event Summary Customized (LLM Vision v1.3.8)
+  author: fjluquerodriguez
   description: >
     AI-powered security event summaries for frigate or camera entities.
     Sends a notification with a preview to your phone that is updated dynamically when the AI summary is available.
