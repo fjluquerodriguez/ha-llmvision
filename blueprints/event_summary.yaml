@@ -371,30 +371,30 @@ action:
         sequence:
           - stop: "Event is not important"
 
-  - choose:
-      - conditions:
-          - condition: template
-            value_template: "{{ image != '' or video != '' }}"
-        sequence:
-          - alias: "Send instant notification to notify devices"
-            repeat:
-              for_each: "{{device_name_map}}"
-              sequence:
-                - action: "notify.{{ repeat.item }}"
-                  data:
-                    title: "{{ label }}"
-                    message: "{{camera}}"
-                    data:
-                      video: "{{video if video != '' else None}}"
-                      image: "{{image if image != '' else None}}"
-                      entity_id: "{{camera_entity if input_mode=='Camera' and preview_mode=='Live Preview'}}"
-                      url: !input tap_navigate #iOS
-                      clickAction: !input tap_navigate #Android
-                      tag: "{{tag}}"
-                      group: "{{group}}"
-                      alert_once: true
-                      push:
-                        interruption-level: "{{importance.response_text|lower if importance is defined else 'active'}}"
+  #- choose:
+  #    - conditions:
+  #        - condition: template
+  #          value_template: "{{ image != '' or video != '' }}"
+  #      sequence:
+  #        - alias: "Send instant notification to notify devices"
+  #          repeat:
+  #            for_each: "{{device_name_map}}"
+  #            sequence:
+  #              - action: "notify.{{ repeat.item }}"
+  #                data:
+  #                  title: "{{ label }}"
+  #                  message: "{{camera}}"
+  #                  data:
+  #                    video: "{{video if video != '' else None}}"
+  #                    image: "{{image if image != '' else None}}"
+  #                    entity_id: "{{camera_entity if input_mode=='Camera' and preview_mode=='Live Preview'}}"
+  #                    url: !input tap_navigate #iOS
+  #                    clickAction: !input tap_navigate #Android
+  #                    tag: "{{tag}}"
+  #                    group: "{{group}}"
+  #                    alert_once: true
+  #                    push:
+  #                      interruption-level: "{{importance.response_text|lower if importance is defined else 'active'}}"
 
   - alias: "Analyze event"
     choose:
